@@ -1,11 +1,13 @@
-import AppContainer from './components/app-container/AppContainer';
+import { BrowserRouter } from 'react-router-dom';
 import { GlobalStyles } from './styles/GlobalStyles';
-
+import Router from './router/Router';
 const App = () => {
 	return (
 		<>
-			<GlobalStyles />
-			<AppContainer />
+			<BrowserRouter>
+				<GlobalStyles />
+				<Router />
+			</BrowserRouter>
 		</>
 	);
 };
