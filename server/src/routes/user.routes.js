@@ -11,4 +11,6 @@ userRoutes.post('/', controller.createUser);
 // ELIMINAR UN USUARIO
 userRoutes.delete('/:id', controller.deleteUser);
 
+userRoutes.patch('/:id', controller.updateUser);
+
 module.exports = userRoutes;
