@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 
 const UsersListContainer = () => {
 	const [users, setUsers] = useState([]);
-
+	console.log(users);
 	useEffect(() => {
 		getAllUsers(setUsers);
 	}, []);
@@ -14,13 +14,9 @@ const UsersListContainer = () => {
 	return (
 		<>
 			<StyledCardsContainer>
-				{users.length > 0 ? (
-					users.map(user => (
-						<UserCard key={user.userId} user={user} setUsers={setUsers} />
-					))
-				) : (
-					<h1>Loading...</h1>
-				)}
+				{users.map(user => (
+					<UserCard key={user.userId} user={user} setUsers={setUsers} />
+				))}
 			</StyledCardsContainer>
 		</>
 	);

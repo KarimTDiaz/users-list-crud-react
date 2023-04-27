@@ -26,6 +26,18 @@ const UserCardDelete = styled.img`
 `;
 const UserCardButton = styled.div`
 	cursor: pointer;
+	/* &::after {
+		content: 'DELETE USER';
+		bottom: 100px;
+		left: -3.5%;
+		font-size: 1rem;
+		padding: 6px 3px;
+		background-color: black;
+		color: #fffbf6;
+		border-radius: 5px;
+		transform: scale(0);
+		transition: transform 0.2s;
+	} */
 `;
 
 export { StyledUserCard, UserCardImage, UserCardButton, UserCardDelete };
