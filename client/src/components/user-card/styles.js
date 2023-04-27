@@ -5,6 +5,7 @@ const StyledUserCard = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
 	width: 500px;
 	padding: 1rem 2rem;
 	background-image: linear-gradient(
@@ -24,6 +25,10 @@ const UserCardDelete = styled.img`
 	width: 20px;
 	cursor: pointer;
 `;
+const UserCardEdit = styled.img`
+	width: 20px;
+	cursor: pointer;
+`;
 const UserCardButton = styled.div`
 	cursor: pointer;
 	/* &::after {
@@ -40,4 +45,10 @@ const UserCardButton = styled.div`
 	} */
 `;
 
-export { StyledUserCard, UserCardImage, UserCardButton, UserCardDelete };
+export {
+	StyledUserCard,
+	UserCardImage,
+	UserCardButton,
+	UserCardDelete,
+	UserCardEdit
+};

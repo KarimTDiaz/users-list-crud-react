@@ -73,7 +73,10 @@ controller.deleteUser = (req, res) => {
         return res.status(409).send({
           message: 'El usuario no se ha podido eliminar'
         });
-      return res.send(jsonData);
+      return res.status(201).send({
+        message: 'Usuario borrado correctamente',
+        users: jsonData
+      });
     });
   });
 };
