@@ -89,7 +89,9 @@ controller.updateUser = (req, res) => {
         .send({ message: 'Error al leer el archivo de usuarios' });
     const jsonData = JSON.parse(data);
     if (req.body.email) {
-      const userError = jsonData.some(user => user.email === req.body.email);
+      const userError = jsonData.some(
+        user => user.email === req.body.email && user.userId !== req.params.id
+      );
       if (userError) {
         return res
           .status(409)

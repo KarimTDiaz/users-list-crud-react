@@ -10,16 +10,14 @@ import {
 } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { URLS } from '../../constants/apiRequests';
-import { useState } from 'react';
 
 const UserCard = ({
 	user,
 	setUsers,
-	trash,
-	setTrash,
 	setId,
-	edit,
-	setEdit
+	setUserSelected,
+	action,
+	setAction
 }) => {
 	const navigate = useNavigate();
 
@@ -40,19 +38,20 @@ const UserCard = ({
 				<UserCardButton onClick={() => navigate('/details', { state: user })}>
 					SEE DETAILS
 				</UserCardButton>
-
 				<UserCardDelete
 					{...ICONS.trash}
 					onClick={() => {
-						setTrash(!trash);
+						setAction({ ...action, trash: !action.trash });
+
 						setId(user.userId);
 					}}
 				/>
 				<UserCardEdit
 					{...ICONS.edit}
-					onClick={() =>
-						navigate('/update', { state: user, setUsers: setUsers })
-					}
+					onClick={() => {
+						setAction({ ...action, edit: !action.edit });
+						setUserSelected(user);
+					}}
 				/>
 			</UserCardItemsRight>
 		</StyledUserCard>

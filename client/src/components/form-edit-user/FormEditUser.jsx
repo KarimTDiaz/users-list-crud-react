@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { URLS } from '../../constants/apiRequests';
-import { useNavigate } from 'react-router-dom';
 
 const FormEditUser = ({ user, setUsers }) => {
-	console.log(user);
 	const [userInfo, setUserInfo] = useState({
 		name: user.name,
-		userName: user.username,
+		username: user.username,
 		email: user.email,
 		age: user.age,
 		gender: user.gender
 	});
 	return (
-		<form>
+		<form
+			onSubmit={ev => {
+				ev.preventDefault();
+				updateUser(user.userId, userInfo, setUsers);
+			}}
+		>
 			<div>
 				<legend>Gender</legend>
 				<label htmlFor='Male'>Male</label>
@@ -20,7 +23,8 @@ const FormEditUser = ({ user, setUsers }) => {
 					type='radio'
 					id='male'
 					name='gender'
-					/* checked={userInfo.gender === 'Male' ? true : false} */
+					value={userInfo.gender}
+					defaultChecked={userInfo.gender === 'Male'}
 					onChange={e => {
 						handleInfo(userInfo, setUserInfo, 'gender', e.target.id);
 					}}
@@ -30,7 +34,8 @@ const FormEditUser = ({ user, setUsers }) => {
 					type='radio'
 					id='female'
 					name='gender'
-					/* checked={userInfo.gender === 'Female' ? true : false} */
+					value={userInfo.gender}
+					defaultChecked={userInfo.gender === 'Female'}
 					onChange={e =>
 						handleInfo(userInfo, setUserInfo, 'gender', e.target.id)
 					}
@@ -54,9 +59,9 @@ const FormEditUser = ({ user, setUsers }) => {
 					type='text'
 					id='user-name'
 					name='user-name'
-					value={userInfo.userName}
+					value={userInfo.username}
 					onChange={e =>
-						handleInfo(userInfo, setUserInfo, 'userName', e.target.value)
+						handleInfo(userInfo, setUserInfo, 'username', e.target.value)
 					}
 				/>
 			</div>
@@ -84,21 +89,12 @@ const FormEditUser = ({ user, setUsers }) => {
 					}
 				/>
 			</div>
-			<input
-				type='submit'
-				value='Update User'
-				onSubmit={ev => {
-					ev.preventDefault();
-					/* handleSubmit(ev, user.userId, userInfo, setUsers); */
-					updateUser(user.userId, userInfo, setUsers);
-				}}
-			/>
+			<input type='submit' value='Update User' />
 		</form>
 	);
 };
 const handleInfo = (userInfo, setUserInfo, key, value) => {
 	setUserInfo({ ...userInfo, [key]: value });
-	console.log(...userInfo);
 };
 const updateUser = async (userId, userInfo, setUsers) => {
 	const request = await fetch(URLS.ALL_USERS + '/' + userId, {
@@ -109,12 +105,8 @@ const updateUser = async (userId, userInfo, setUsers) => {
 			'Content-Type': 'application/json'
 		}
 	});
-	const data = request.json();
-	setUsers(data);
+	const data = await request.json();
+	setUsers(data.users);
 };
 
-/* const handleSubmit = (ev, userId, userInfo, setUsers) => {
-	ev.preventDefault();
-	updateUser(userId, userInfo, setUsers);
-}; */
 export default FormEditUser;

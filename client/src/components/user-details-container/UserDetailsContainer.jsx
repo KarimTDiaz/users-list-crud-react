@@ -8,7 +8,6 @@ import {
 } from './styles';
 
 const UserDetailsContainer = ({ user }) => {
-	console.log(user);
 	return (
 		<>
 			<StyledDetails>
@@ -22,6 +21,9 @@ const UserDetailsContainer = ({ user }) => {
 				</DetailsKey>
 				<DetailsKey>
 					Email: <DetailsValue>{user.email}</DetailsValue>
+				</DetailsKey>
+				<DetailsKey>
+					Gender: <DetailsValue>{user.gender}</DetailsValue>
 				</DetailsKey>
 				<DetailsActive>
 					{user.active ? 'Following' : 'Not Following'}

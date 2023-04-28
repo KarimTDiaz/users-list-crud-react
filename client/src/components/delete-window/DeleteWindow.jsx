@@ -1,20 +1,23 @@
 import { DeleteMessageContainer, DeleteMessage } from './styles';
 import { URLS } from '../../constants/apiRequests';
 
-const DeleteWindow = ({ trash, setTrash, id, setUsers }) => {
+const DeleteWindow = ({ action, setAction, id, setUsers }) => {
 	return (
 		<DeleteMessageContainer>
 			<DeleteMessage>Are you sure ?</DeleteMessage>
 			<DeleteMessage
 				onClick={() => {
 					deleteUserFetch(setUsers, id);
-					setTrash(!trash);
+					setAction({ ...action, trash: !action.trash });
 				}}
 				pointer
 			>
 				YES
 			</DeleteMessage>
-			<DeleteMessage onClick={() => setTrash(!trash)} pointer>
+			<DeleteMessage
+				onClick={() => setAction({ ...action, trash: !action.trash })}
+				pointer
+			>
 				NO
 			</DeleteMessage>
 		</DeleteMessageContainer>
