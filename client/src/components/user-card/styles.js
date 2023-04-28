@@ -6,20 +6,27 @@ const StyledUserCard = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
-	width: 500px;
-	padding: 1rem 2rem;
-	background-image: linear-gradient(
-		to left,
-		${COLORS.borderColor},
-		${COLORS.cardColor}
-	);
-
-	border-radius: 10px;
+	width: 700px;
+	padding: 0.2rem 2rem;
+	background-color: ${COLORS.textColor};
+	border-bottom: 1px solid ${COLORS.greyColor};
 `;
-
+const UserCardItemsLeft = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+`;
+const UserCardItemsRight = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+`;
 const UserCardImage = styled.img`
-	width: 50px;
+	width: 45px;
 	border-radius: 50%;
+	border: 2px solid ${COLORS.greyColor};
 `;
 const UserCardDelete = styled.img`
 	width: 20px;
@@ -50,5 +57,7 @@ export {
 	UserCardImage,
 	UserCardButton,
 	UserCardDelete,
-	UserCardEdit
+	UserCardEdit,
+	UserCardItemsLeft,
+	UserCardItemsRight
 };

@@ -1,16 +1,41 @@
 import { useState } from 'react';
+import { URLS } from '../../constants/apiRequests';
+import { useNavigate } from 'react-router-dom';
 
-const FormEditUser = ({ user }) => {
+const FormEditUser = ({ user, setUsers }) => {
+	console.log(user);
 	const [userInfo, setUserInfo] = useState({
 		name: user.name,
 		userName: user.username,
 		email: user.email,
-		age: user.age
+		age: user.age,
+		gender: user.gender
 	});
-
 	return (
 		<form>
-			<div></div>
+			<div>
+				<legend>Gender</legend>
+				<label htmlFor='Male'>Male</label>
+				<input
+					type='radio'
+					id='male'
+					name='gender'
+					/* checked={userInfo.gender === 'Male' ? true : false} */
+					onChange={e => {
+						handleInfo(userInfo, setUserInfo, 'gender', e.target.id);
+					}}
+				/>
+				<label htmlFor='Male'>Female</label>
+				<input
+					type='radio'
+					id='female'
+					name='gender'
+					/* checked={userInfo.gender === 'Female' ? true : false} */
+					onChange={e =>
+						handleInfo(userInfo, setUserInfo, 'gender', e.target.id)
+					}
+				/>
+			</div>
 			<div>
 				<label htmlFor='name'>Name</label>
 				<input
@@ -59,12 +84,37 @@ const FormEditUser = ({ user }) => {
 					}
 				/>
 			</div>
-			<input type='submit' value='Update User' />
+			<input
+				type='submit'
+				value='Update User'
+				onSubmit={ev => {
+					ev.preventDefault();
+					/* handleSubmit(ev, user.userId, userInfo, setUsers); */
+					updateUser(user.userId, userInfo, setUsers);
+				}}
+			/>
 		</form>
 	);
 };
-
 const handleInfo = (userInfo, setUserInfo, key, value) => {
 	setUserInfo({ ...userInfo, [key]: value });
+	console.log(...userInfo);
 };
+const updateUser = async (userId, userInfo, setUsers) => {
+	const request = await fetch(URLS.ALL_USERS + '/' + userId, {
+		method: 'PATCH',
+		body: JSON.stringify({ ...userInfo }),
+		headers: {
+			Accept: '*/*',
+			'Content-Type': 'application/json'
+		}
+	});
+	const data = request.json();
+	setUsers(data);
+};
+
+/* const handleSubmit = (ev, userId, userInfo, setUsers) => {
+	ev.preventDefault();
+	updateUser(userId, userInfo, setUsers);
+}; */
 export default FormEditUser;

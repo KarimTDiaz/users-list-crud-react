@@ -1,9 +1,10 @@
 import { URLS } from '../../constants/apiRequests';
 import UserCard from '../user-card/UserCard';
-import { StyledCardsContainer } from './styles';
+import { CardsContainerHeader, StyledCardsContainer } from './styles';
 import { useEffect, useState } from 'react';
 import DeleteWindow from '../delete-window/DeleteWindow';
 import FormEditUser from '../form-edit-user/FormEditUser';
+import { StyledTitle } from '../title/styles';
 
 const UsersListContainer = () => {
 	const [users, setUsers] = useState([]);
@@ -18,6 +19,9 @@ const UsersListContainer = () => {
 	return (
 		<>
 			<StyledCardsContainer>
+				<CardsContainerHeader>
+					<StyledTitle>Users List</StyledTitle>
+				</CardsContainerHeader>
 				{users.map(user => (
 					<UserCard
 						key={user.userId}
@@ -39,7 +43,6 @@ const UsersListContainer = () => {
 					setUsers={setUsers}
 				></DeleteWindow>
 			)}
-			{edit && <FormEditUser></FormEditUser>}
 		</>
 	);
 };

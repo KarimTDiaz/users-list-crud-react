@@ -4,7 +4,9 @@ import {
 	UserCardButton,
 	UserCardDelete,
 	UserCardEdit,
-	UserCardImage
+	UserCardImage,
+	UserCardItemsLeft,
+	UserCardItemsRight
 } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { URLS } from '../../constants/apiRequests';
@@ -23,29 +25,36 @@ const UserCard = ({
 
 	return (
 		<StyledUserCard>
-			<UserCardImage src={user.profileImage} alt='Imagen de Perfil' />
-			<p>{user.username}</p>
-			<p
-				onClick={() => {
-					followUserFetch(setUsers, user.userId, user.active);
-				}}
-			>
-				{user.active ? 'Unfollow' : 'Follow'}
-			</p>
-			<UserCardButton onClick={() => navigate('/details', { state: user })}>
-				SEE DETAILS
-			</UserCardButton>
-			<UserCardDelete
-				{...ICONS.trash}
-				onClick={() => {
-					setTrash(!trash);
-					setId(user.userId);
-				}}
-			/>
-			<UserCardEdit
-				{...ICONS.edit}
-				onClick={() => navigate('/update', { state: user })}
-			/>
+			<UserCardItemsLeft>
+				<UserCardImage src={user.profileImage} alt='Imagen de Perfil' />
+				<p>{user.username}</p>
+			</UserCardItemsLeft>
+			<UserCardItemsRight>
+				<p
+					onClick={() => {
+						followUserFetch(setUsers, user.userId, user.active);
+					}}
+				>
+					{user.active ? 'Unfollow' : 'Follow'}
+				</p>
+				<UserCardButton onClick={() => navigate('/details', { state: user })}>
+					SEE DETAILS
+				</UserCardButton>
+
+				<UserCardDelete
+					{...ICONS.trash}
+					onClick={() => {
+						setTrash(!trash);
+						setId(user.userId);
+					}}
+				/>
+				<UserCardEdit
+					{...ICONS.edit}
+					onClick={() =>
+						navigate('/update', { state: user, setUsers: setUsers })
+					}
+				/>
+			</UserCardItemsRight>
 		</StyledUserCard>
 	);
 };

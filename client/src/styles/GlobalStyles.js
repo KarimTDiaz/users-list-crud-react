@@ -12,9 +12,13 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
   }
   body{
+    display: grid;
+	place-items: center;
+	min-height: 100vh;
     margin: 0;
     font-family: sans-serif;
 background-color: ${COLORS.bgColor};
+font-family:'Outfit', sans-serif;
   }
   a{
     text-decoration: none;
