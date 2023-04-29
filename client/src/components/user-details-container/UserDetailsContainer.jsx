@@ -23,10 +23,10 @@ const UserDetailsContainer = ({ user }) => {
 					Email: <DetailsValue>{user.email}</DetailsValue>
 				</DetailsKey>
 				<DetailsKey>
-					Gender: <DetailsValue>{user.gender}</DetailsValue>
+					Gender: <DetailsValue>{user.genre}</DetailsValue>
 				</DetailsKey>
 				<DetailsActive>
-					{user.active ? 'Following' : 'Not Following'}
+					{user.active ? 'Premium User' : 'Standard User'}
 				</DetailsActive>
 			</StyledDetails>
 		</>

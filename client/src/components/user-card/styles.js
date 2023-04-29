@@ -36,6 +36,9 @@ const UserCardEdit = styled.img`
 	width: 20px;
 	cursor: pointer;
 `;
+const UserCardPlan = styled.p`
+	color: ${({ plan }) => (plan ? 'green' : 'red')};
+`;
 const UserCardButton = styled.div`
 	cursor: pointer;
 	/* &::after {
@@ -59,5 +62,6 @@ export {
 	UserCardDelete,
 	UserCardEdit,
 	UserCardItemsLeft,
-	UserCardItemsRight
+	UserCardItemsRight,
+	UserCardPlan
 };

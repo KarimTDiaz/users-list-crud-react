@@ -10,5 +10,9 @@ export const ICONS = {
 	add: {
 		src: 'assets/add-user.svg',
 		alt: 'Icono de un usuario'
+	},
+	camera: {
+		src: 'assets/camera-solid.svg',
+		alt: 'Icono de una camara'
 	}
 };
