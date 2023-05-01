@@ -68,7 +68,13 @@ const UsersListContainer = () => {
 					setAction={setAction}
 				/>
 			)}
-			{action.create && <FormCreateUser />}
+			{action.create && (
+				<FormCreateUser
+					setUsers={setUsers}
+					action={action}
+					setAction={setAction}
+				/>
+			)}
 		</>
 	);
 };

@@ -1,3 +1,6 @@
+import CardsHeader from '../cards-header/CardsHeader';
+import Text from '../text/Text';
+import { useNavigate } from 'react-router-dom';
 import {
 	StyledDetails,
 	StyledImage,
@@ -8,8 +11,12 @@ import {
 } from './styles';
 
 const UserDetailsContainer = ({ user }) => {
+	const navigate = useNavigate();
 	return (
 		<>
+			<CardsHeader>
+				<Text>User Details</Text>
+			</CardsHeader>
 			<StyledDetails>
 				<StyledImage src={user.profileImage} />
 				<DetailsName>{user.name}</DetailsName>
@@ -25,9 +32,10 @@ const UserDetailsContainer = ({ user }) => {
 				<DetailsKey>
 					Gender: <DetailsValue>{user.genre}</DetailsValue>
 				</DetailsKey>
-				<DetailsActive>
+				<DetailsActive active={user.active}>
 					{user.active ? 'Premium User' : 'Standard User'}
 				</DetailsActive>
+				<button onClick={() => navigate('/')}>BACK</button>
 			</StyledDetails>
 		</>
 	);

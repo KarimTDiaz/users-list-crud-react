@@ -80,7 +80,7 @@ const FormEditUser = ({ user, setUsers, action, setAction }) => {
 							value={userInfo.active}
 							defaultChecked={!userInfo.active}
 							onChange={e => {
-								handleInfo(userInfo, setUserInfo, 'active', e.target.id);
+								handleInfo(userInfo, setUserInfo, 'active', false);
 							}}
 						/>
 						<label htmlFor='premium'>Premium</label>
@@ -90,9 +90,7 @@ const FormEditUser = ({ user, setUsers, action, setAction }) => {
 							name='active'
 							value={userInfo.active}
 							defaultChecked={userInfo.active}
-							onChange={e =>
-								handleInfo(userInfo, setUserInfo, 'active', e.target.id)
-							}
+							onChange={e => handleInfo(userInfo, setUserInfo, 'active', true)}
 						/>
 					</div>
 					<FormField>
