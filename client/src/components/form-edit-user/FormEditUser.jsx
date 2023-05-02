@@ -14,7 +14,7 @@ import CardsHeader from '../cards-header/CardsHeader';
 import Text from '../text/Text';
 import Modal from '../modal/Modal';
 
-const FormEditUser = ({ user, setUsers, action, setAction }) => {
+const FormEditUser = ({ user, setAction, setFetchInfo }) => {
 	const [userInfo, setUserInfo] = useState(user);
 	return (
 		<Modal>
@@ -41,8 +41,18 @@ const FormEditUser = ({ user, setUsers, action, setAction }) => {
 				<FormEdit
 					onSubmit={ev => {
 						ev.preventDefault();
-						updateUser(user.userId, userInfo, setUsers);
-						setAction({ ...action, edit: !action.edit });
+						setFetchInfo({
+							url: URLS.ALL_USERS + '/' + user.userId,
+							options: {
+								method: 'PATCH',
+								body: JSON.stringify({ ...userInfo }),
+								headers: {
+									Accept: '*/*',
+									'Content-Type': 'application/json'
+								}
+							}
+						});
+						setAction(null);
 					}}
 				>
 					<div>
@@ -145,18 +155,6 @@ const FormEditUser = ({ user, setUsers, action, setAction }) => {
 };
 const handleInfo = (userInfo, setUserInfo, key, value) => {
 	setUserInfo({ ...userInfo, [key]: value });
-};
-const updateUser = async (userId, userInfo, setUsers) => {
-	const request = await fetch(URLS.ALL_USERS + '/' + userId, {
-		method: 'PATCH',
-		body: JSON.stringify({ ...userInfo }),
-		headers: {
-			Accept: '*/*',
-			'Content-Type': 'application/json'
-		}
-	});
-	const data = await request.json();
-	setUsers(data.users);
 };
 
 export default FormEditUser;

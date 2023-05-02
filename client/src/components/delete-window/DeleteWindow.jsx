@@ -9,7 +9,7 @@ import Modal from '../modal/Modal';
 import CardsHeader from '../cards-header/CardsHeader';
 import Text from '../text/Text';
 
-const DeleteWindow = ({ action, setAction, id, setUsers }) => {
+const DeleteWindow = ({ setAction, id, setFetchInfo }) => {
 	return (
 		<Modal>
 			<div>
@@ -23,17 +23,19 @@ const DeleteWindow = ({ action, setAction, id, setUsers }) => {
 					<DeleteOptionsContainer>
 						<DeleteOption
 							onClick={() => {
-								deleteUserFetch(setUsers, id);
-								setAction({ ...action, trash: !action.trash });
+								setFetchInfo({
+									url: URLS.ALL_USERS + '/' + id,
+									options: {
+										method: 'DELETE'
+									}
+								});
+								setAction('trash');
 							}}
 							pointer
 						>
 							YES
 						</DeleteOption>
-						<DeleteOption
-							onClick={() => setAction({ ...action, trash: !action.trash })}
-							pointer
-						>
+						<DeleteOption onClick={() => setAction(null)} pointer>
 							NO
 						</DeleteOption>
 					</DeleteOptionsContainer>
@@ -41,14 +43,6 @@ const DeleteWindow = ({ action, setAction, id, setUsers }) => {
 			</div>
 		</Modal>
 	);
-};
-
-const deleteUserFetch = async (setUsers, id) => {
-	const request = await fetch(URLS.ALL_USERS + '/' + id, {
-		method: 'DELETE'
-	});
-	const data = await request.json();
-	setUsers(data.users);
 };
 
 export default DeleteWindow;

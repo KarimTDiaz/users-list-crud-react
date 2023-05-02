@@ -14,7 +14,7 @@ import Modal from '../modal/Modal';
 import CardsHeader from '../cards-header/CardsHeader';
 import Text from '../text/Text';
 
-const FormCreateUser = ({ setUsers, action, setAction }) => {
+const FormCreateUser = ({ setAction, setFetchInfo }) => {
 	const [userCreate, setUserCreate] = useState({
 		profileImage: picture('men'),
 		name: '',
@@ -50,8 +50,18 @@ const FormCreateUser = ({ setUsers, action, setAction }) => {
 				<FormCreate
 					onSubmit={ev => {
 						ev.preventDefault();
-						createUser(userCreate, setUsers);
-						setAction({ ...action, create: !action.create });
+						setFetchInfo({
+							url: URLS.ALL_USERS,
+							options: {
+								method: 'POST',
+								body: JSON.stringify({ ...userCreate }),
+								headers: {
+									Accept: '*/*',
+									'Content-Type': 'application/json'
+								}
+							}
+						});
+						setAction(null);
 					}}
 				>
 					<div>
@@ -165,19 +175,6 @@ const FormCreateUser = ({ setUsers, action, setAction }) => {
 };
 const handleCreate = (userCreate, setUserCreate, key, value) => {
 	setUserCreate({ ...userCreate, [key]: value });
-	console.log(userCreate);
-};
-const createUser = async (userCreate, setUsers) => {
-	const request = await fetch(URLS.ALL_USERS, {
-		method: 'POST',
-		body: JSON.stringify({ ...userCreate }),
-		headers: {
-			Accept: '*/*',
-			'Content-Type': 'application/json'
-		}
-	});
-	const data = await request.json();
-	setUsers(data.users);
 };
 
 export default FormCreateUser;

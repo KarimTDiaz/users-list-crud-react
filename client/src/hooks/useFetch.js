@@ -1,17 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useFetch = (url, ...options) => {
-	const [data, setData] = useState([]);
-	const [link, setLink] = useState(url);
+const fetchData = async (fetchInfo, setFetchStatus) => {
+	const { url, options } = fetchInfo;
 
-	useEffect(() => {
-		fetchData(link, setData, ...options);
-	}, [link]);
-	return { setLink, data };
+	try {
+		const request = await fetch(url, options);
+		const data = await request.json();
+		setFetchStatus({ data, loading: false, error: undefined });
+	} catch (err) {
+		setFetchStatus({ data: undefined, loading: false, error: err });
+	}
 };
 
-const fetchData = async (link, setData, ...options) => {
-	const response = await fetch(link, ...options);
-	const data = await response.json();
-	setData(data);
+export const useFetch = url => {
+	const [fetchInfo, setFetchInfo] = useState({
+		url,
+		options: {
+			method: 'GET'
+		}
+	});
+
+	const [fetchStatus, setFetchStatus] = useState({
+		data: undefined,
+		loading: true,
+		error: undefined
+	});
+
+	useEffect(() => {
+		fetchData(fetchInfo, setFetchStatus);
+	}, [fetchInfo]);
+
+	return { ...fetchStatus, setFetchInfo };
 };

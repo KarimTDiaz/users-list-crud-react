@@ -11,7 +11,9 @@ controller.allUsers = (req, res) => {
     if (err)
       return res.status(500).send('Error al leer el archivo de usuarios');
     const jsonData = JSON.parse(data);
-    res.send(jsonData);
+    res
+      .status(201)
+      .send({ message: 'Usuarios Cargados correctamente', users: jsonData });
   });
 };
 

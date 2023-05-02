@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { ICONS } from '../../constants/icons';
 import {
 	StyledUserCard,
@@ -9,17 +10,8 @@ import {
 	UserCardItemsRight,
 	UserCardPlan
 } from './styles';
-import { useNavigate } from 'react-router-dom';
-import { URLS } from '../../constants/apiRequests';
 
-const UserCard = ({
-	user,
-	setUsers,
-	setId,
-	setUserSelected,
-	action,
-	setAction
-}) => {
+const UserCard = ({ user, setId, setUserSelected, setAction }) => {
 	const navigate = useNavigate();
 
 	return (
@@ -38,14 +30,14 @@ const UserCard = ({
 				<UserCardDelete
 					{...ICONS.trash}
 					onClick={() => {
-						setAction({ ...action, trash: !action.trash });
+						setAction('trash');
 						setId(user.userId);
 					}}
 				/>
 				<UserCardEdit
 					{...ICONS.edit}
 					onClick={() => {
-						setAction({ ...action, edit: !action.edit });
+						setAction('edit');
 						setUserSelected(user);
 					}}
 				/>
