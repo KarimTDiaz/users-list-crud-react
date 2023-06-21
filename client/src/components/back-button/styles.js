@@ -5,6 +5,8 @@ const StyledBackButton = styled.button`
 	padding: 0.2rem 1rem;
 	background-color: ${COLORS.decoColor};
 	color: ${COLORS.textColor};
+	border: none;
+	border-radius: 20px;
 `;
 
 export { StyledBackButton };

@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { picture } from '../../utils/picture';
-import { ICONS } from '../../constants/icons';
 import { URLS } from '../../constants/apiRequests';
+import { ICONS } from '../../constants/icons';
+import { picture } from '../../utils/picture';
+import CardsHeader from '../cards-header/CardsHeader';
+import Modal from '../modal/Modal';
+import Text from '../text/Text';
 import {
-	FormContainerCreate,
-	FormEditPhotoCreate,
 	EditCameraIconCreate,
 	EditPhotoContainerCreate,
-	FormFieldCreate,
-	FormCreate
+	FormContainerCreate,
+	FormCreate,
+	FormEditPhotoCreate,
+	FormFieldCreate
 } from './styles';
-import Modal from '../modal/Modal';
-import CardsHeader from '../cards-header/CardsHeader';
-import Text from '../text/Text';
 
 const FormCreateUser = ({ setAction, setFetchInfo }) => {
 	const [userCreate, setUserCreate] = useState({
@@ -167,7 +167,7 @@ const FormCreateUser = ({ setAction, setFetchInfo }) => {
 							}
 						/>
 					</FormFieldCreate>
-					<input type='submit' value='Update User' />
+					<input type='submit' value='Create User' />
 				</FormCreate>
 			</FormContainerCreate>
 		</Modal>

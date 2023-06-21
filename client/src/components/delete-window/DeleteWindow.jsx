@@ -27,10 +27,9 @@ const DeleteWindow = ({ setAction, id, setFetchInfo }) => {
 									url: URLS.ALL_USERS + '/' + id,
 									options: {
 										method: 'DELETE'
-									},
-									redirectTo: { url: '/' }
+									}
 								});
-								setAction('trash');
+								setAction(null);
 							}}
 							pointer
 						>
