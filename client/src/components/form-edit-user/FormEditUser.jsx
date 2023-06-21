@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { picture } from '../../utils/picture';
 import { URLS } from '../../constants/apiRequests';
 import { ICONS } from '../../constants/icons';
+import { picture } from '../../utils/picture';
+import Backbutton from '../back-button/BackButton';
+import CardsHeader from '../cards-header/CardsHeader';
+import Modal from '../modal/Modal';
+import Text from '../text/Text';
 import {
 	EditCameraIcon,
 	EditPhotoContainer,
@@ -10,9 +14,6 @@ import {
 	FormEditPhoto,
 	FormField
 } from './styles';
-import CardsHeader from '../cards-header/CardsHeader';
-import Text from '../text/Text';
-import Modal from '../modal/Modal';
 
 const FormEditUser = ({ user, setAction, setFetchInfo }) => {
 	const [userInfo, setUserInfo] = useState(user);
@@ -149,6 +150,7 @@ const FormEditUser = ({ user, setAction, setFetchInfo }) => {
 					</FormField>
 					<input type='submit' value='Update User' />
 				</FormEdit>
+				<Backbutton />
 			</FormContainer>
 		</Modal>
 	);

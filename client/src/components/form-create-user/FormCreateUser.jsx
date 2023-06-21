@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { URLS } from '../../constants/apiRequests';
 import { ICONS } from '../../constants/icons';
 import { picture } from '../../utils/picture';
+import Backbutton from '../back-button/BackButton';
 import CardsHeader from '../cards-header/CardsHeader';
 import Modal from '../modal/Modal';
 import Text from '../text/Text';
@@ -169,6 +170,7 @@ const FormCreateUser = ({ setAction, setFetchInfo }) => {
 					</FormFieldCreate>
 					<input type='submit' value='Create User' />
 				</FormCreate>
+				<Backbutton />
 			</FormContainerCreate>
 		</Modal>
 	);
