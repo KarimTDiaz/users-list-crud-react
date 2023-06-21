@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const fetchData = async (fetchInfo, setFetchStatus) => {
+const fetchData = async (fetchInfo, setFetchStatus, navigate) => {
 	const { url, options } = fetchInfo;
 
 	try {
 		const request = await fetch(url, options);
 		const data = await request.json();
+		if (redirectTo) navigate(redirectTo.url, redirectTo.state);
 		setFetchStatus({ data, loading: false, error: undefined });
 	} catch (err) {
 		setFetchStatus({ data: undefined, loading: false, error: err });
@@ -25,9 +27,9 @@ export const useFetch = url => {
 		loading: true,
 		error: undefined
 	});
-
+	const navigate = useNavigate();
 	useEffect(() => {
-		fetchData(fetchInfo, setFetchStatus);
+		fetchData(fetchInfo, setFetchStatus, navigate);
 	}, [fetchInfo]);
 
 	return { ...fetchStatus, setFetchInfo };

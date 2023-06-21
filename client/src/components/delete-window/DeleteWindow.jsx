@@ -1,13 +1,13 @@
+import { URLS } from '../../constants/apiRequests';
+import CardsHeader from '../cards-header/CardsHeader';
+import Modal from '../modal/Modal';
+import Text from '../text/Text';
 import {
-	DeleteMessageContainer,
 	DeleteMessage,
+	DeleteMessageContainer,
 	DeleteOption,
 	DeleteOptionsContainer
 } from './styles';
-import { URLS } from '../../constants/apiRequests';
-import Modal from '../modal/Modal';
-import CardsHeader from '../cards-header/CardsHeader';
-import Text from '../text/Text';
 
 const DeleteWindow = ({ setAction, id, setFetchInfo }) => {
 	return (
@@ -27,7 +27,8 @@ const DeleteWindow = ({ setAction, id, setFetchInfo }) => {
 									url: URLS.ALL_USERS + '/' + id,
 									options: {
 										method: 'DELETE'
-									}
+									},
+									redirectTo: { url: '/' }
 								});
 								setAction('trash');
 							}}

@@ -1,13 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+import Backbutton from '../back-button/BackButton';
 import CardsHeader from '../cards-header/CardsHeader';
 import Text from '../text/Text';
-import { useNavigate } from 'react-router-dom';
 import {
-	StyledDetails,
-	StyledImage,
-	DetailsName,
+	DetailsActive,
 	DetailsKey,
+	DetailsName,
 	DetailsValue,
-	DetailsActive
+	StyledDetails,
+	StyledImage
 } from './styles';
 
 const UserDetailsContainer = ({ user }) => {
@@ -35,7 +36,7 @@ const UserDetailsContainer = ({ user }) => {
 				<DetailsActive active={user.active}>
 					{user.active ? 'Premium User' : 'Standard User'}
 				</DetailsActive>
-				<button onClick={() => navigate('/')}>BACK</button>
+				<Backbutton />
 			</StyledDetails>
 		</>
 	);
